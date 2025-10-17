@@ -1,4 +1,3 @@
-// az deployment sub create --subscription "Azure subscription ilo-digital"  --location westeurope --template-file ./IaC/main.bicep
 targetScope = 'subscription'
 
 param rgName string = 'rg-bicep-test'
