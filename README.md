@@ -1,11 +1,11 @@
 # README
 ## 1. Purpose
 Test Azure deployment with Bicep
-## 2. Preparation
+## 2. Requirements
 - Install Azure CLI on PC :
 
   https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest&pivots=msi
-
+- VS code
 - Install Bicep extension in VS Code
 
 ## 3. GitHub
