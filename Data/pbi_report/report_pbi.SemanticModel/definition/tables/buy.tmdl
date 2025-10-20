@@ -1,0 +1,66 @@
+table buy
+	lineageTag: 37b4b3d4-f3dc-4f29-959c-ef8a4af84595
+
+	column buy_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 95589f8f-97a8-4bba-9866-75e4b4e5e9a6
+		summarizeBy: sum
+		sourceColumn: buy_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: be93cae1-b7bc-4c69-9ed5-4a5cdb74b1aa
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 09fc15de-5c0e-4dc3-b3b5-907661ff379f
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount
+		dataType: double
+		lineageTag: 9267be6f-b611-4a66-8b7c-9c36db483cdd
+		summarizeBy: sum
+		sourceColumn: amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column buy_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 87dadcdd-046e-4a10-be20-44c624ee7ad2
+		summarizeBy: none
+		sourceColumn: buy_date
+
+		variation Variation
+			isDefault
+			relationship: b45d193d-9907-4c0d-a04d-ad9f08967186
+			defaultHierarchy: LocalDateTable_ed28cbe1-1dbc-4778-999a-f3111864f453.'Hiérarchie de dates'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition buy = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("sv-biceptest.database.windows.net"),
+				    #"db-biceptest" = Source{[Name="db-biceptest"]}[Data],
+				    dbo_buy = #"db-biceptest"{[Schema="dbo",Item="buy"]}[Data]
+				in
+				    dbo_buy
+
+	annotation PBI_ResultType = Table
+

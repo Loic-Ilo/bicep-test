@@ -1,0 +1,13 @@
+relationship b45d193d-9907-4c0d-a04d-ad9f08967186
+	joinOnDateBehavior: datePartOnly
+	fromColumn: buy.buy_date
+	toColumn: LocalDateTable_ed28cbe1-1dbc-4778-999a-f3111864f453.Date
+
+relationship AutoDetected_23a485e6-a391-4d3e-8391-cedc2d44e57d
+	fromColumn: buy.customer_id
+	toColumn: customer.customer_id
+
+relationship 0ff44bf5-7c3a-984e-9e0d-0b704e896693
+	fromColumn: buy.product_id
+	toColumn: product.product_id
+

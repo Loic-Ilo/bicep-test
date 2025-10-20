@@ -1,0 +1,10 @@
+CustomerID;CustomerName;City;Country
+1;"Paul";"Paris";"France"
+2;"Mary";"Lyon";"France"
+
+create table customer (
+customer_id INT IDENTITY(1,1) PRIMARY KEY,
+customer_name NVARCHAR(50) NOT NULL,
+city NVARCHAR(50) NOT NULL,
+country NVARCHAR(50) NOT NULL
+)

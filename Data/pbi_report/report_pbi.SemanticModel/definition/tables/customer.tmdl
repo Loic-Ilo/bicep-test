@@ -1,0 +1,48 @@
+table customer
+	lineageTag: 646ac2b9-8db5-43be-b9dc-c611ac08d150
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: fa1ae4e9-62cb-4328-9fb6-3770ba9c2c5e
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_name
+		dataType: string
+		lineageTag: 71de5623-de5e-4bf6-9094-470bf4f06076
+		summarizeBy: none
+		sourceColumn: customer_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: 0f1d93f6-38b8-469e-a755-a5a47f5c1599
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 4605605d-1370-47b1-a682-aff05bfcb7c8
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition customer = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("sv-biceptest.database.windows.net"),
+				    #"db-biceptest" = Source{[Name="db-biceptest"]}[Data],
+				    dbo_customer = #"db-biceptest"{[Schema="dbo",Item="customer"]}[Data]
+				in
+				    dbo_customer
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,32 @@
+table product
+	lineageTag: fbaccabe-2ed8-4671-8d2d-f5e036ec1ef6
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: a4057ab6-89c5-4866-86b2-ec4e1d80cf15
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_label
+		dataType: string
+		lineageTag: d71e71c5-8531-4b24-8343-83e25b0d3c18
+		summarizeBy: none
+		sourceColumn: product_label
+
+		annotation SummarizationSetBy = Automatic
+
+	partition product = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("sv-biceptest.database.windows.net"),
+				    #"db-biceptest" = Source{[Name="db-biceptest"]}[Data],
+				    dbo_product = #"db-biceptest"{[Schema="dbo",Item="product"]}[Data]
+				in
+				    dbo_product
+
+	annotation PBI_ResultType = Table
+
